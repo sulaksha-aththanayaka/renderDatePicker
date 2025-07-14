@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import { FormInput } from './components/FormInput'
+import './index.css' 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -17,13 +16,13 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <div className="card p-10">
+        <FormInput
+              label="Date Of Birth"
+              placeHolder="mm/dd/yyyy"
+              type="date"
+              max={new Date().toISOString().split("T")[0]}
+            />
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
