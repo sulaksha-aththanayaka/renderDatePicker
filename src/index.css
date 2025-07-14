@@ -11,3 +11,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .linkTo:hover {
   color: #237804;
 }
+
+/* global CSS file */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
+}
+
+input[type="date"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
