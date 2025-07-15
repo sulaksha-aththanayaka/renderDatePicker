@@ -14,6 +14,19 @@ export const FormInput = React.forwardRef<HTMLInputElement | HTMLSelectElement, 
     const internalRef = useRef<HTMLInputElement>(null);
     const [actualType, setActualType] = useState(type === "date" ? "text" : type);
 
+     const handleDateInteraction = () => {
+      if (type === "date" && internalRef.current) {
+        setActualType("date");
+        setTimeout(() => {
+          if (internalRef.current) {
+            // IMPORTANT: Force set max attribute right before showing picker
+            if (max) internalRef.current.max = max;
+            internalRef.current.showPicker?.();
+          }
+        }, 0);
+      }
+    };
+
     const setRef = (el: HTMLInputElement) => {
       internalRef.current = el;
       if (typeof ref === "function") {
@@ -68,10 +81,7 @@ export const FormInput = React.forwardRef<HTMLInputElement | HTMLSelectElement, 
               ref={type === "date" ? setRef : (ref as React.Ref<HTMLInputElement>)}
               max={max}
               onFocus={(e) => {
-                if (type === "date") {
-                  setActualType("date");
-                  setTimeout(() => internalRef.current?.showPicker?.(), 0);
-                }
+                handleDateInteraction();
                 rest.onFocus?.(e);
               }}
               onBlur={(e) => {
