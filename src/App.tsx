@@ -22,6 +22,7 @@ function App() {
               placeHolder="mm/dd/yyyy"
               type="date"
               max={new Date().toISOString().split("T")[0]}
+              maxDate={new Date().toISOString().split("T")[0]}
             />
       </div>
       <p className="read-the-docs">
