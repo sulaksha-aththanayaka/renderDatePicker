@@ -6,11 +6,11 @@ type Props = {
   placeHolder: string;
   type?: string;
   options?: { label: string; value: string }[];
-  maxDate?: string
+  max?: string
 } & React.InputHTMLAttributes<HTMLInputElement | HTMLSelectElement>;
 
 export const FormInput = React.forwardRef<HTMLInputElement | HTMLSelectElement, Props>(
-  ({ label, placeHolder, type, options, maxDate, ...rest }, ref) => {
+  ({ label, placeHolder, type, options, max, ...rest }, ref) => {
     const internalRef = useRef<HTMLInputElement>(null);
     const [actualType, setActualType] = useState(type === "date" ? "text" : type);
 
@@ -66,7 +66,7 @@ export const FormInput = React.forwardRef<HTMLInputElement | HTMLSelectElement, 
               placeholder={placeHolder}
               type={actualType}
               ref={type === "date" ? setRef : (ref as React.Ref<HTMLInputElement>)}
-              max={maxDate}
+              max={max}
               onFocus={(e) => {
                 if (type === "date") {
                   setActualType("date");
